@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheets/bootstrap.min.css') }}" />
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+        <title>Interface de prédiction</title>
+    </head>
+    <body>
+        <h1>Prédire le genre d'une musique selon ses paroles.</h1>
+
+        <form method="POST" action="/predict" class="row">
+            <!-- récupère directement les paroles -->
+            <div class="card col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <h3>Prédire selon les paroles</h3>
+                <p>Cliquez sur un des liens ci-dessous pour obtenir des paroles.</p>
+
+                <!-- raccourcis pour récupèrer les paroles -->
+                <div class="genre-shortcut text-center">
+                    {%for i in result["genres"]%}
+                        <a href="https://genius.com/tags/{{i}}" target=_blank>{{i}}</a>
+                    {%endfor%}
+                </div>
+
+                <!-- Garde l'input précédent -->
+                <p class="text-center"><b>Paroles</b><p>
+                <p class="text-center"><textarea name="lyrics" rows="10" cols="50" class="text-center">{{ result['lyrics'] }}</textarea></p>
+
+                <button type="submit" class="btn btn-primary btn-block mr-3" data-toggle="modal">Prédire</button>
+            </div>
+
+            <div>
+                <h3>Genre prédit : {{ result['predict_genre']}}</h3>
+            </div>  
+        </form>
+
+    </body>
+</html>
