@@ -24,4 +24,4 @@ soupsieve==2.3.1
 threadpoolctl==3.0.0
 tqdm==4.62.3
 urllib3==1.26.19
-Werkzeug==2.2.3
+Werkzeug==3.0.3
